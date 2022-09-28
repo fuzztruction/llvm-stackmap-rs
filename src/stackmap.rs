@@ -486,6 +486,8 @@ impl StackMap {
     /// Parse the stackmap(s) of the binary `path` points to.
     #[cfg(feature = "from-elf")]
     pub fn from_path<T: AsRef<Path>>(path: T) -> Result<Vec<StackMap>, ParsingError> {
+        use std::{path::PathBuf, str::FromStr};
+
         let bytes = fs::read(path.as_ref())?;
         let elf = Elf::parse(&bytes)?;
 
@@ -496,7 +498,6 @@ impl StackMap {
             StackMap::relocate_stackmap_section(&elf, section_range, section_bytes)?;
             return Ok(StackMap::new(&mut section_bytes.to_owned())?);
         }
-
         Err(ParsingError::StackMapSectionNotFound)
     }
 
