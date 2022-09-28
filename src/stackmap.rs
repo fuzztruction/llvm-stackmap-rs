@@ -6,7 +6,7 @@ use std::{
 };
 
 use bytes::{Buf, Bytes};
-#[cfg(feature = "serde-support")]
+#[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
 #[cfg(feature = "from-elf")]
@@ -16,7 +16,7 @@ type Constant = u64;
 
 #[repr(u8)]
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = "serde-support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub enum LocationType {
     /// Invalid location
     Invalid = 0,
@@ -115,7 +115,7 @@ impl DrainFromBytes for i64 {}
 
 #[repr(C)]
 #[derive(Default, Debug, Clone, Copy)]
-#[cfg_attr(feature = "serde-support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 struct Header {
     /// The LLVM Stackmap version of the following data.
     version: u8,
@@ -153,7 +153,7 @@ impl DrainFromBytes for Header {
 /// Describes one function of the binary the Stackmap belongs to.
 #[repr(C)]
 #[derive(Default, Debug, Clone, Copy)]
-#[cfg_attr(feature = "serde-support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct StkSizeRecord {
     /// VMA of this function. This address is relative to the sections base,
     /// if this is a PIC binary.
@@ -186,7 +186,7 @@ impl DrainFromBytes for StkSizeRecord {
 
 #[repr(C)]
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = "serde-support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct Location {
     /// Describes how the values of the struct must be interpreted to get the
     /// actual recorded value.
@@ -231,7 +231,7 @@ impl DrainFromBytes for Location {
 /// depends on the calling convention used for a given PatchPoint.
 #[repr(C)]
 #[derive(Default, Debug, Clone, Copy)]
-#[cfg_attr(feature = "serde-support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct LiveOut {
     /// The register that must stay live.
     dwarf_regnum: u16,
@@ -263,7 +263,7 @@ impl DrainFromBytes for LiveOut {
 
 #[repr(C)]
 #[derive(Default, Debug, Clone)]
-#[cfg_attr(feature = "serde-support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct StkMapRecord {
     /// Custom ID assigned during compilation.
     pub patch_point_id: u64,
@@ -285,7 +285,7 @@ pub struct StkMapRecord {
 
 #[repr(C)]
 #[derive(Default, Debug, Clone)]
-#[cfg_attr(feature = "serde-support", derive(Serialize, Deserialize))]
+#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
 pub struct StackMap {
     /// The stackmap header.
     header: Header,
