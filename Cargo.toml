@@ -7,7 +7,7 @@ authors = ["Nils Bars <nils.bars@rub.de>", "Moritz Schloegel <moritz.schloegel@r
 edition = "2021"
 
 [features]
-default = ["serde-support", "from-elf"]
+default = ["from-elf"]
 
 # Drive Serialize and Deserialize for all structures to support serde.
 serde-support = ["serde"]
