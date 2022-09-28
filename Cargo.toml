@@ -2,7 +2,7 @@
 name = "llvm_stackmap"
 license = "AGPL-3.0-only"
 description = "A library capable of parsing stack maps emitted by the LLVM compiler."
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Nils Bars <nils.bars@rub.de>", "Moritz Schloegel <moritz.schloegel@rub.de>"]
 edition = "2021"
 
@@ -17,5 +17,4 @@ from-elf = ["goblin"]
 [dependencies]
 goblin = {version = "~0", optional = true}
 serde = { version = "~1", features = ["derive"], optional = true}
-rayon = "~1"
 bytes = "~1"
