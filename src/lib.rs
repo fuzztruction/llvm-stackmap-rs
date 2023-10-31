@@ -2,3 +2,6 @@
 
 mod stackmap;
 pub use crate::stackmap::*;
+
+mod instruction;
+pub use instruction::*;
