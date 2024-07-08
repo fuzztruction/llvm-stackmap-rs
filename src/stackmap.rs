@@ -486,7 +486,6 @@ impl StackMap {
     /// Parse the stackmap(s) of the binary `path` points to.
     #[cfg(feature = "from-elf")]
     pub fn from_path<T: AsRef<Path>>(path: T) -> Result<Vec<StackMap>, ParsingError> {
-        use std::{path::PathBuf, str::FromStr};
 
         let bytes = fs::read(path.as_ref())?;
         let elf = Elf::parse(&bytes)?;
