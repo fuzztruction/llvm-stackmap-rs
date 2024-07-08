@@ -2,7 +2,7 @@
 name = "llvm_stackmap"
 license = "AGPL-3.0-only"
 description = "A library capable of parsing stack maps emitted by the LLVM compiler."
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Nils Bars <nils.bars@rub.de>", "Moritz Schloegel <moritz.schloegel@rub.de>"]
 edition = "2021"
 repository = "https://github.com/fuzztruction/llvm-stackmap-rs"
